@@ -2,51 +2,39 @@
 
 void Pipeline::run(Project project)
 {
-    bool testsPassed;
-    bool deploySuccessful;
-
     if(project.hasTests()) {
         if("success" == project.runTests()) {
             log.info("Tests passed");
-            testsPassed = true;
+            deploy("success" == project.deploy());
         }
         else {
             log.error("Tests failed");
-            testsPassed = false;
+            send_email_if_enabled("Tests failed");
         }
     }
     else {
         log.info("No tests");
-        testsPassed = true;
+        deploy("success" == project.deploy());
     }
+}
 
-    if(testsPassed) {
-        if("success" == project.deploy()) {
-            log.info("Deployment successful");
-            deploySuccessful = true;
-        }
-        else {
-            log.error("Deployment failed");
-            deploySuccessful = false;
-        }
+void Pipeline::deploy(bool succeeded) const
+{
+    if(succeeded) {
+        log.info("Deployment successful");
+        send_email_if_enabled("Deployment completed successfully");
     }
     else {
-        deploySuccessful = false;
+        log.error("Deployment failed");
+        send_email_if_enabled("Deployment failed");
     }
+}
 
+void Pipeline::send_email_if_enabled(const std::string &msg) const
+{
     if(config.sendEmailSummary()) {
         log.info("Sending email");
-        if(testsPassed) {
-            if(deploySuccessful) {
-                emailer.send("Deployment completed successfully");
-            }
-            else {
-                emailer.send("Deployment failed");
-            }
-        }
-        else {
-            emailer.send("Tests failed");
-        }
+        emailer.send(msg);
     }
     else {
         log.info("Email disabled");
