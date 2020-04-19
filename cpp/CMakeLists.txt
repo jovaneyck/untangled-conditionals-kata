@@ -14,7 +14,7 @@ endif()
 
 add_executable(pipeline
         src/Pipeline.cpp
-        test/PipelineTest.cpp
+        #test/PipelineTest.cpp
         test/main.cpp
-        )
+        test/ApprovalTests.cpp)
 target_include_directories(pipeline PRIVATE include)
