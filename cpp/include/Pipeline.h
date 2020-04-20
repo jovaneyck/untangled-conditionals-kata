@@ -9,6 +9,9 @@ class Pipeline {
     Emailer &emailer;
     Logger &log;
 
+    void send_email_if_enabled(const std::string &msg) const;
+    void deploy(Project &project) const;
+
   public:
     Pipeline(Config &config, Emailer &emailer, Logger &log)
         : config(config)
