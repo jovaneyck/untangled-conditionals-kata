@@ -470,7 +470,7 @@ namespace Catch {
 
 // We need a dummy global operator<< so we can bring it into Catch namespace later
 struct Catch_global_namespace_dummy {};
-std::ostream& operator<<(std::ostream&, Catch_global_namespace_dummy);
+std::basic_string<char> operator<<(std::ostream&, Catch_global_namespace_dummy);
 
 namespace Catch {
 

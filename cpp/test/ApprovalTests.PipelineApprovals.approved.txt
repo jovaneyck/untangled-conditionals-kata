@@ -1,0 +1,63 @@
+(1, 1, Tests Passed) => 
+INFO: Tests passed
+INFO: Deployment successful
+INFO: Sending email
+Deployment completed successfully
+
+(1, 1, Tests Failed) => 
+ERROR: Tests failed
+INFO: Sending email
+Tests failed
+
+(1, 1, No Tests) => 
+INFO: No tests
+INFO: Deployment successful
+INFO: Sending email
+Deployment completed successfully
+
+(1, 0, Tests Passed) => 
+INFO: Tests passed
+ERROR: Deployment failed
+INFO: Sending email
+Deployment failed
+
+(1, 0, Tests Failed) => 
+ERROR: Tests failed
+INFO: Sending email
+Tests failed
+
+(1, 0, No Tests) => 
+INFO: No tests
+ERROR: Deployment failed
+INFO: Sending email
+Deployment failed
+
+(0, 1, Tests Passed) => 
+INFO: Tests passed
+INFO: Deployment successful
+INFO: Email disabled
+
+(0, 1, Tests Failed) => 
+ERROR: Tests failed
+INFO: Email disabled
+
+(0, 1, No Tests) => 
+INFO: No tests
+INFO: Deployment successful
+INFO: Email disabled
+
+(0, 0, Tests Passed) => 
+INFO: Tests passed
+ERROR: Deployment failed
+INFO: Email disabled
+
+(0, 0, Tests Failed) => 
+ERROR: Tests failed
+INFO: Email disabled
+
+(0, 0, No Tests) => 
+INFO: No tests
+ERROR: Deployment failed
+INFO: Email disabled
+
+

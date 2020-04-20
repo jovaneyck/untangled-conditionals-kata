@@ -1,7 +1,7 @@
 #pragma once
 
-#include <string>
 #include "TestStatus.h"
+#include <string>
 
 class Project {
     bool buildsSuccessfully;
