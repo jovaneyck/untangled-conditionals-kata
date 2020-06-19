@@ -1,4 +1,5 @@
-﻿Logging INFO: <Tests passed>
+﻿[True,True,PASSING_TESTS] => Logging INFO: <Tests passed>
 Logging INFO: <Deployment successful>
 Logging INFO: <Sending email>
 Sending mail with message <Deployment completed successfully>
+

@@ -15,36 +15,47 @@ namespace Tests
         [Fact]
         public void Scenario()
         {
+            ApprovalTests.Combinations.CombinationApprovals.VerifyAllCombinations(
+                RunPipeline,
+                new []{true},
+                new[]{true},
+                new []{TestStatus.PASSING_TESTS});
+        }
+
+        private static string RunPipeline(bool sendEmails, bool buildsSuccessfully, TestStatus testStatus)
+        {
             var log = new StringBuilder();
 
             var config = Substitute.For<Config>();
+
             config
                 .SendEmailSummary()
-                .Returns(true);
+                .Returns(sendEmails);
 
             var emailer = Substitute.For<Emailer>();
             emailer
                 .When(_ => _.Send(Arg.Any<string>()))
-                .Do(call => log.AppendLine($"Sending mail with message <{string.Join(",", call.Args().Select(_=>_.ToString()))}>"));
+                .Do(call => log.AppendLine(
+                    $"Sending mail with message <{string.Join(",", call.Args().Select(_ => _.ToString()))}>"));
 
             var logger = Substitute.For<Logger>();
             logger
-                .When(_=>_.Info(Arg.Any<string>()))
+                .When(_ => _.Info(Arg.Any<string>()))
                 .Do(call => log.AppendLine($"Logging INFO: <{string.Join(",", call.Args().Select(_ => _.ToString()))}>"));
             logger
-                .When(_=>_.Error(Arg.Any<string>()))
+                .When(_ => _.Error(Arg.Any<string>()))
                 .Do(call => log.AppendLine($"Logging ERROR: <{string.Join(",", call.Args().Select(_ => _.ToString()))}>"));
 
             var pipeline = new Pipeline.Pipeline(config, emailer, logger);
 
             var project = new Project.ProjectBuilder()
-                .SetDeploysSuccessfully(true)
-                .SetTestStatus(TestStatus.PASSING_TESTS)
+                .SetDeploysSuccessfully(buildsSuccessfully)
+                .SetTestStatus(testStatus)
                 .Build();
 
             pipeline.Run(project);
 
-            ApprovalTests.Approvals.Verify(log.ToString());
+            return log.ToString();
         }
     }
 }
