@@ -17,9 +17,9 @@ namespace Tests
         {
             ApprovalTests.Combinations.CombinationApprovals.VerifyAllCombinations(
                 RunPipeline,
-                new []{true},
-                new[]{true},
-                new []{TestStatus.PASSING_TESTS});
+                new []{true,false},
+                new[]{true,false},
+                Enum.GetValues(typeof(TestStatus)).OfType<TestStatus>());
         }
 
         private static string RunPipeline(bool sendEmails, bool buildsSuccessfully, TestStatus testStatus)

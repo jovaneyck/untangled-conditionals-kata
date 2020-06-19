@@ -1,5 +1,50 @@
-﻿[True,True,PASSING_TESTS] => Logging INFO: <Tests passed>
+﻿[True,True,NO_TESTS] => Logging INFO: <No tests>
 Logging INFO: <Deployment successful>
 Logging INFO: <Sending email>
 Sending mail with message <Deployment completed successfully>
+
+[True,True,PASSING_TESTS] => Logging INFO: <Tests passed>
+Logging INFO: <Deployment successful>
+Logging INFO: <Sending email>
+Sending mail with message <Deployment completed successfully>
+
+[True,True,FAILING_TESTS] => Logging ERROR: <Tests failed>
+Logging INFO: <Sending email>
+Sending mail with message <Tests failed>
+
+[True,False,NO_TESTS] => Logging INFO: <No tests>
+Logging ERROR: <Deployment failed>
+Logging INFO: <Sending email>
+Sending mail with message <Deployment failed>
+
+[True,False,PASSING_TESTS] => Logging INFO: <Tests passed>
+Logging ERROR: <Deployment failed>
+Logging INFO: <Sending email>
+Sending mail with message <Deployment failed>
+
+[True,False,FAILING_TESTS] => Logging ERROR: <Tests failed>
+Logging INFO: <Sending email>
+Sending mail with message <Tests failed>
+
+[False,True,NO_TESTS] => Logging INFO: <No tests>
+Logging INFO: <Deployment successful>
+Logging INFO: <Email disabled>
+
+[False,True,PASSING_TESTS] => Logging INFO: <Tests passed>
+Logging INFO: <Deployment successful>
+Logging INFO: <Email disabled>
+
+[False,True,FAILING_TESTS] => Logging ERROR: <Tests failed>
+Logging INFO: <Email disabled>
+
+[False,False,NO_TESTS] => Logging INFO: <No tests>
+Logging ERROR: <Deployment failed>
+Logging INFO: <Email disabled>
+
+[False,False,PASSING_TESTS] => Logging INFO: <Tests passed>
+Logging ERROR: <Deployment failed>
+Logging INFO: <Email disabled>
+
+[False,False,FAILING_TESTS] => Logging ERROR: <Tests failed>
+Logging INFO: <Email disabled>
 
